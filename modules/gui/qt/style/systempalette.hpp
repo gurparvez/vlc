@@ -111,7 +111,7 @@ public:
     Q_PROPERTY(CSDMetrics* csdMetrics READ getCSDMetrics NOTIFY CSDMetricsChanged FINAL)
 
     //standard color definitions used by light/dark themes
-    COLOR_DEFINITION(orange500, "#FF8800");
+    COLOR_DEFINITION(orange500, "#D17816");
     COLOR_DEFINITION(orange800, "#FF610A");
 
     COLOR_DEFINITION(orange400, "#f89a06"); //FIXME name have been chosen randomly by me
@@ -132,6 +132,17 @@ public:
     COLOR_DEFINITION(lightGrey500, "#E9E9E9");
     COLOR_DEFINITION(lightGrey600, "#E5E5E5");
     COLOR_DEFINITION(lightGrey700, "#E0E0E0");
+
+    //dark theme neutrals, sampled from the vlc++ redesign reference
+    COLOR_DEFINITION(neutral050, "#0F0F0F"); //views, panels
+    COLOR_DEFINITION(neutral100, "#161616"); //menus, popups
+    COLOR_DEFINITION(neutral150, "#181818"); //hover, separators, fields
+    COLOR_DEFINITION(neutral200, "#1A1A1A"); //tooltips
+    COLOR_DEFINITION(neutral300, "#333333"); //outlines
+    COLOR_DEFINITION(neutral400, "#3B3B3B"); //disabled
+    COLOR_DEFINITION(neutral600, "#6B6B6B"); //secondary text
+    COLOR_DEFINITION(neutral700, "#8F8F8F"); //primary text
+    COLOR_DEFINITION(neutral800, "#C5C5C5"); //emphasized text
 
     COLOR_DEFINITION(red500, "#FF0000");
 
