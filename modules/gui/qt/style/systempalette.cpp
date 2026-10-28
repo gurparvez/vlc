@@ -805,6 +805,7 @@ void SystemPalette::makeDarkPalette()
     {
         C::ColorSet CS = C::ButtonAccent;
         setColor(CS, C::Bg, C::Primary, C::Normal, orange500);
+        setColor(CS, C::Bg, C::Primary, C::Hovered, orange500.lighter(120));
         setColor(CS, C::Bg, C::Primary, C::Pressed, orange500.darker(123));
         setColor(CS, C::Bg, C::Primary, C::Disabled, neutral400);
 

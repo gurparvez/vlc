@@ -37,7 +37,7 @@ T.Control {
     readonly property ColorContext colorContext: ColorContext {
         id: theme
 
-        colorSet: ColorContext.ToolButton
+        colorSet: ColorContext.ButtonAccent
 
         enabled: root.enabled || root.paintOnly
         focused: root.activeFocus
@@ -73,30 +73,6 @@ T.Control {
     T.ToolTip.visible: (hovered || visualFocus)
     T.ToolTip.delay: VLCStyle.delayToolTipAppear
     T.ToolTip.text: root.Accessible.name
-
-    // States
-
-    states: [
-        State {
-            name: "hovered"
-            when: cursorInside
-
-            PropertyChanges {
-                target: hoverShadow
-                opacity: 1.0
-            }
-        }
-    ]
-
-    transitions: Transition {
-        from: ""; to: "*"
-        reversible: true
-        NumberAnimation {
-            properties: "opacity"
-            easing.type: Easing.InOutSine
-            duration: VLCStyle.duration_veryShort
-        }
-    }
 
     // Keys
 
@@ -152,19 +128,7 @@ T.Control {
 
         hoverEnabled: true
 
-        readonly property bool cursorInside: {
-            if (!containsMouse)
-                return false
-
-            const center = (width / 2)
-            if (Helpers.pointInRadius( center - mouseX,
-                                       center - mouseY,
-                                       center )) {
-                return true
-            } else {
-                return false
-            }
-        }
+        readonly property bool cursorInside: containsMouse
 
         onCursorInsideChanged: {
             if (pressed && !cursorInside) {
@@ -217,10 +181,9 @@ T.Control {
                 return VLCIcons.play_filled
         }
 
-        color: cursorInside ? theme.accent
-                            : "black"  //foreground is always black
+        color: theme.fg.primary
 
-        font.pixelSize: Math.round(parent.height / 1.7)
+        font.pixelSize: Math.round(parent.height / 2)
 
         font.family: VLCIcons.fontFamily
 
@@ -240,8 +203,8 @@ T.Control {
     }
 
     background: Item {
-        implicitWidth: height
-        implicitHeight: VLCStyle.icon_medium
+        implicitWidth: VLCStyle.dp(48, VLCStyle.scale)
+        implicitHeight: VLCStyle.dp(24, VLCStyle.scale)
 
         Widgets.AnimatedBackground {
             anchors.fill: parent
@@ -260,43 +223,41 @@ T.Control {
 
             radius: VLCStyle.radius_small
 
-            gradient: Gradient {
-                GradientStop { position: 0.0; color: "#e25b01" }
-                GradientStop { position: 1.0; color: "#f89a06" }
+            color: theme.bg.primary
+
+            DelayedBehavior on color {
+                delayedEnabled: theme.initialized
+
+                ColorAnimation {
+                    duration: VLCStyle.duration_veryShort
+                    easing.type: Easing.InOutSine
+                }
             }
 
-            Widgets.RoundedRectangleShadow {
-                id: hoverShadow
-
-                visible: opacity > 0
-                opacity: 0
-
-                blurRadius: VLCStyle.dp(9, VLCStyle.scale)
-                yOffset: VLCStyle.dp(4, VLCStyle.scale)
-
-                color: theme.accent.alpha(0.29)
-            }
-
+            // Press and hold feedback: fills the button, stop is triggered once it is full.
             Rectangle {
                 id: innerRectangle
 
-                color: "white"
+                anchors.centerIn: parent
 
-                anchors.fill: parent
-                anchors.margins: _diminished ? (parent.width / 2)
-                                             : VLCStyle.dp(2, VLCStyle.scale)
+                width: parent.width * progress
+                height: parent.height * progress
+                radius: VLCStyle.radius_small * progress
 
-                radius: Math.max(0, VLCStyle.radius_small - anchors.margins)
+                color: theme.fg.primary
+                opacity: 0.3
+
+                property real progress: _diminished ? 1.0 : 0.0
 
                 property bool _diminished: false
 
                 onStateChanged: {
                     if (state === "diminished") {
-                        marginBehavior.enabled = true
+                        progressBehavior.enabled = true
                         bindingTimer.start()
                     } else {
                         bindingTimer.stop()
-                        marginBehavior.enabled = false
+                        progressBehavior.enabled = false
                         _diminished = false
                     }
                 }
@@ -310,11 +271,11 @@ T.Control {
                     onTriggered: innerRectangle._diminished = true
                 }
 
-                Behavior on anchors.margins {
-                    id: marginBehavior
+                Behavior on progress {
+                    id: progressBehavior
                     NumberAnimation {
                         // Press and hold action must be triggered
-                        // as soon as the inner rectangle diminishes.
+                        // as soon as the inner rectangle is full.
                         // Subtract the interval here so that we satisfy
                         // that condition.
                         duration: mouseArea.pressAndHoldInterval - bindingTimer.interval
