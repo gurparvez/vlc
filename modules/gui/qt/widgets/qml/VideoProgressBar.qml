@@ -29,7 +29,7 @@ Item {
     clip :true
 
     property real value: 0
-    property int radius: implicitHeight
+    property int radius: VLCStyle.radius_small
 
     readonly property ColorContext colorContext: ColorContext {
         id: theme

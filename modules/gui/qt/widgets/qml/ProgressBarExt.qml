@@ -76,7 +76,7 @@ T.ProgressBar {
                 implicitHeight: VLCStyle.heightBar_xxsmall
 
                 // NOTE: We want round corners.
-                radius: height / 2
+                radius: VLCStyle.radius_small
 
                 visible: !control.indeterminate
 
@@ -96,7 +96,7 @@ T.ProgressBar {
                 x: Math.round((parent.width - width) * position)
 
                 // NOTE: We want round corners.
-                radius: height / 2
+                radius: VLCStyle.radius_small
                 visible: control.indeterminate
 
                 color: progressBarTheme.accent

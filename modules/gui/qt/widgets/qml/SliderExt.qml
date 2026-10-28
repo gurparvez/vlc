@@ -45,7 +45,7 @@ T.Slider {
 
     property real handleWidth: VLCStyle.icon_xsmall
 
-    property real radius: VLCStyle.dp(3, VLCStyle.scale)
+    property real radius: VLCStyle.radius_small
 
     // when set the tooltip will follow the mouse when control is hoverred
     // else tooltip will always be shown at current value.
@@ -97,7 +97,7 @@ T.Slider {
 
         width: control.handleWidth
         height: width
-        radius: width / 2
+        radius: VLCStyle.radius_small
 
         color: control.color
         visible: (control.visualFocus || control.pressed) && control.enabled

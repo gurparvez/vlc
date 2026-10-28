@@ -55,7 +55,7 @@ T.ScrollBar {
 
     background: Rectangle {
         color: theme.bg.primary
-        radius: (control.horizontal ? height : width) / 2
+        radius: VLCStyle.radius_small
 
         visible: (control._shown && control.interacting)
     }
@@ -64,7 +64,7 @@ T.ScrollBar {
         implicitWidth: control.interacting ? VLCStyle.scrollBarInteractingSize : VLCStyle.scrollBarNonInteractingSize
         implicitHeight: control.interacting ? VLCStyle.scrollBarInteractingSize : VLCStyle.scrollBarNonInteractingSize
 
-        radius: (control.horizontal ? height : width) / 2
+        radius: VLCStyle.radius_small
         color: theme.fg.secondary
 
         visible: control._shown

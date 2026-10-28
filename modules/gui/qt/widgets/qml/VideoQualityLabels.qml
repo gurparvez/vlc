@@ -60,7 +60,7 @@ Row {
                 anchors.fill: label
                 color: theme.bg.primary
                 opacity: 0.5
-                radius: VLCStyle.dp(3, VLCStyle.scale)
+                radius: VLCStyle.radius_small
             }
 
             Accessible.ignored: true

@@ -165,7 +165,7 @@ T.Switch {
 
         anchors.margins: VLCStyle.checkButton_margins
 
-        radius: height / 2
+        radius: VLCStyle.radius_small
 
         color: root.color
 
@@ -195,7 +195,7 @@ T.Switch {
 
                 anchors.margins: VLCStyle.checkButton_handle_margins
 
-                radius: height / 2
+                radius: VLCStyle.radius_small - VLCStyle.checkButton_handle_margins
 
                 color: root.colorHandle
             }

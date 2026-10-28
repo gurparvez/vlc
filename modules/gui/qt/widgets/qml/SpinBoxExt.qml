@@ -72,7 +72,7 @@ T.SpinBox {
     }
 
     background: Rectangle {
-        radius: VLCStyle.margin_xxxsmall
+        radius: VLCStyle.radius_small
         border.color: control.borderColor
         border.width: control.borderWidth
         border.pixelAligned: (radius < Number.EPSILON)

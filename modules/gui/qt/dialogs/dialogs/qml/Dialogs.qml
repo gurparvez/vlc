@@ -181,7 +181,7 @@ Item {
             color: errorMsgTheme.bg.negative
 
             height: messageText.implicitHeight + VLCStyle.margin_normal
-            radius: VLCStyle.fontHeight_normal / 2
+            radius: VLCStyle.radius_small
 
             property real layoutWidth: layout.width
 

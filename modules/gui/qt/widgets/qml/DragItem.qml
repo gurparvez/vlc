@@ -455,7 +455,7 @@ Item {
         border.color: theme.border
         border.width: VLCStyle.dp(1, VLCStyle.scale)
         border.pixelAligned: (radius < Number.EPSILON)
-        radius: VLCStyle.dp(6, VLCStyle.scale)
+        radius: VLCStyle.radius_medium
 
         Widgets.RoundedRectangleShadow {
             blending: false // offscreen stacked below everything, no need for blending even though it is not opaque

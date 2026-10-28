@@ -88,7 +88,7 @@ Item {
     Rectangle {
         anchors.fill: parent
 
-        radius: width / 2
+        radius: VLCStyle.radius_small
 
         color: "white"
 

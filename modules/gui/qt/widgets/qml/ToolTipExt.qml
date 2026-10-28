@@ -42,7 +42,7 @@ T.ToolTip {
 
     closePolicy: T.Popup.CloseOnEscape | T.Popup.CloseOnPressOutsideParent | T.Popup.CloseOnReleaseOutsideParent
 
-    property real radius: VLCStyle.dp(4, VLCStyle.scale)
+    property real radius: VLCStyle.radius_small
 
     Component.onCompleted: {
         if (control.popupType !== undefined) {

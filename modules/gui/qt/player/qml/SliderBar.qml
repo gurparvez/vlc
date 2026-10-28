@@ -324,7 +324,7 @@ T.ProgressBar {
             visible: !Player.hasChapters
             color: control.backgroundColor
             anchors.fill: parent
-            radius: implicitHeight
+            radius: VLCStyle.radius_small
         }
 
         Repeater {
@@ -575,7 +575,7 @@ T.ProgressBar {
 
         implicitWidth: sliderHandle._size
         implicitHeight: sliderHandle._size
-        radius: VLCStyle.margin_small
+        radius: VLCStyle.radius_small
         color: theme.fg.primary
 
         // We use dynamic mutability group because time interpolation
